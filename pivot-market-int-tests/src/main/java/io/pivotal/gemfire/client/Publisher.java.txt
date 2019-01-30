@@ -1,0 +1,70 @@
+package io.pivotal.gemfire.client;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import com.tibco.tibrv.Tibrv;
+import com.tibco.tibrv.TibrvMsg;
+import com.tibco.tibrv.TibrvRvdTransport;
+
+public class Publisher {
+	public Publisher() {
+	}
+	
+	public static void main(String[] args) throws Exception {
+		Publisher publisher = new Publisher();
+		String service = "7500";
+		//String network = "loopback";
+		//String network = "224.0.0.1";
+		String network = args[0];
+		String daemon = "tcp:9025";
+		String subject = "SOME.SUBJECT";
+		
+		Tibrv.open(Tibrv.IMPL_NATIVE);
+		//Tibrv.open(Tibrv.IMPL_JAVA);
+		TibrvRvdTransport transport = new TibrvRvdTransport(service, network, daemon);
+
+		TibrvMsg msg = new TibrvMsg();
+		msg.setSendSubject(subject);
+		
+		long i = 0;
+		while (true) {
+			try {
+				InputStream is = publisher.getClass().getResourceAsStream("/data.txt");
+				System.out.println(is.toString());
+				BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+				
+				String s;
+				while ((s = in.readLine()) != null) {
+					//System.out.println(s);
+					msg.update("KEY", s + "|" + i);
+					msg.update("VALUE", s);
+					transport.send(msg);
+				}
+				in.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			Thread.sleep(100l);
+			i++;
+		}
+	}
+	
+	public void read() {
+		try {
+			InputStream is = this.getClass().getResourceAsStream("/data.txt");
+			System.out.println(is.toString());
+			BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+			
+			String s;
+			while ((s = in.readLine()) != null) {
+				System.out.println(s);
+			}
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

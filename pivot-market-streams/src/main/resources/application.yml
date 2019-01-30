@@ -1,0 +1,5 @@
+server:
+  port: 6060
+checkKafkaSleepMs: 100
+
+jdbcUrl: jdbc:postgresql://18.213.48.32:6432/retail

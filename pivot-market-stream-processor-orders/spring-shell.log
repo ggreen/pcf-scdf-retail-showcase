@@ -1,0 +1,43 @@
+// dataflow 1.2.0.RELEASE log opened at 2019-01-14 14:16:54
+stream list
+stream destroy --name pivotMartOrders
+app list
+app unregister --type processor --name orders
+app register --name orders --type processor --uri https://s3.amazonaws.com/cloud-native-data/apps/pivot-market-stream-processor-orders-0.0.1-SNAPSHOT.jar
+stream create --name pivotMartOrders --definition "http --port=7374  | orders --jdbcUrl='jdbc:postgresql://18.213.48.32:6432/retail' --jdbcUsername=retail | log"
+ stream deploy pivotMartOrders --properties "app.http.spring.cloud.stream.kafka.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app.http.spring.cloud.stream.kafka.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181,app.log.spring.cloud.stream.kafka.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app.log.spring.cloud.stream.kafka.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181,app. orders.spring.cloud.stream.kafka.streams.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app. orders.spring.cloud.stream.kafka.streams.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181"
+app list 
+exit
+// dataflow 1.2.0.RELEASE log closed at 2019-01-14 14:25:57
+// dataflow 1.2.0.RELEASE log opened at 2019-01-14 14:58:49
+stream list
+// [failed] stream destroy --name pivotMartOrdersp
+stream destroy --name pivotMartOrders
+stream create --name pivotMartOrders --definition "http --port=7374  | orders --jdbcUrl='jdbc:postgresql://18.213.48.32:6432/retail' --jdbcUsername=retail | log" --deploy
+exit
+// dataflow 1.2.0.RELEASE log closed at 2019-01-14 15:02:02
+// dataflow 1.2.0.RELEASE log opened at 2019-01-14 15:06:24
+app list 
+app info --type processor --name orders
+stream platform-list
+stream manifest --name pivotMartOrders
+stream info --name pivotMartOrders
+stream validate --name pivotMartOrders
+stream destroy --name pivotMartOrders
+app unregister --type processor --name orders
+app register --name orders --type processor --uri https://s3.amazonaws.com/cloud-native-data/apps/pivot-market-stream-processor-orders-0.0.1-SNAPSHOT.jar
+stream create --name pivotMartOrders --definition "http --port=7374  | orders --jdbcUrl='jdbc:postgresql://18.213.48.32:6432/retail' --jdbcUsername=retail | log"
+stream deploy pivotMartOrders --properties "app.http.spring.cloud.stream.kafka.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app.http.spring.cloud.stream.kafka.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181,app.log.spring.cloud.stream.kafka.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app.log.spring.cloud.stream.kafka.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181,app. orders.spring.cloud.stream.kafka.streams.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app. orders.spring.cloud.stream.kafka.streams.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181,app.http.spring.cloud.stream.defaultBinder=kakfa1,app.order.spring.cloud.stream.defaultBinder=kakfa"
+exit
+// dataflow 1.2.0.RELEASE log closed at 2019-01-14 21:44:48
+// dataflow 1.2.0.RELEASE log opened at 2019-01-14 22:47:29
+stream destroy --name pivotMartOrders
+app unregister --type processor --name orders
+app register --name orders --type processor --uri https://s3.amazonaws.com/cloud-native-data/apps/pivot-market-stream-processor-orders-0.0.1-SNAPSHOT.jar
+stream create --name pivotMartOrders --definition "http --port=7374  | orders --jdbcUrl='jdbc:postgresql://18.213.48.32:6432/retail' --jdbcUsername=retail | log"
+stream deploy pivotMartOrders --properties "app.http.spring.cloud.stream.kafka.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app.http.spring.cloud.stream.kafka.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181,app.log.spring.cloud.stream.kafka.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app.log.spring.cloud.stream.kafka.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181,app. orders.spring.cloud.stream.kafka.streams.binder.brokers=ec2-35-174-17-30.compute-1.amazonaws.com:9092,app. orders.spring.cloud.stream.kafka.streams.binder.zkNodes=ec2-35-174-17-30.compute-1.amazonaws.com:2181"
+exit
+// dataflow 1.2.0.RELEASE log closed at 2019-01-14 22:48:52
+// dataflow 1.2.0.RELEASE log opened at 2019-01-15 08:46:15
+exit
+// dataflow 1.2.0.RELEASE log closed at 2019-01-15 08:46:28
